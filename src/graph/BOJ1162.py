@@ -35,24 +35,20 @@ def solution():
 
     while priQueue:
         accTime, nowNode, packCnt = heapq.heappop(priQueue)
-        # 현재 노드가 이미 처리된적 있다면 무시
+
         if shortDist[packCnt][nowNode] < accTime:
             continue
 
         for to, time in graph[nowNode]:
             nextTime = accTime + time
             if nextTime < shortDist[packCnt][to]:
-                if to == NODE:
-                    arrivedTimes[packCnt] = nextTime
                 shortDist[packCnt][to] = nextTime
                 heapq.heappush(priQueue, (nextTime, to, packCnt))
             if packCnt < MAX_PACK and accTime < shortDist[packCnt+1][to]:
-                if to == NODE:
-                    arrivedTimes[packCnt+1] = accTime
                 shortDist[packCnt+1][to] = accTime
                 heapq.heappush(priQueue, (accTime, to, packCnt+1))
 
-    print(min(arrivedTimes))
+    print(min([shortDist[i][NODE] for i in range(MAX_PACK + 1)]))
 
 
 init()
