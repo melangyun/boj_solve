@@ -12,7 +12,6 @@
 
 import heapq
 import sys
-import math
 
 input = sys.stdin.readline
 INF = int(10e9)
@@ -45,7 +44,7 @@ def dijkstra():
         for to, cost, flow in graph[nowNode]:
             nextCost = accCost + cost
             nextFlow = min(flow, accFlow)
-            nextRate = -math.trunc(nextFlow / nextCost * 10**6)
+            nextRate = -int(nextFlow / nextCost * 10**6)
             if nextRate < shortDist[to]:
                 shortDist[to] = nextRate
                 heapq.heappush(priQueue, (nextRate, to, nextCost, nextFlow))
