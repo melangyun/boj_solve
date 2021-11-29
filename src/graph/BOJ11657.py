@@ -23,13 +23,14 @@ CITY_CNT, BUS_CNT = map(int, input().split())
 
 edges = []
 shortDist = [INF]*(CITY_CNT+1)
-shortDist[1] = 0
 
 
 def init():
     for _ in range(BUS_CNT):
         start, end, time = map(int, input().split())
         edges.append((start, end, time))
+
+    shortDist[1] = 0
 
 
 def bellanFord():
@@ -42,12 +43,17 @@ def bellanFord():
     return True
 
 
-init()
-if not bellanFord():
-    print(-1)
-else:
+def solution():
+    if not bellanFord():
+        print(-1)
+        return
+
     for x in shortDist[2:]:
         if x == INF:
             print(-1)
         else:
             print(x)
+
+
+init()
+solution()
