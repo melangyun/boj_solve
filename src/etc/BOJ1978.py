@@ -6,23 +6,25 @@ input = sys.stdin.readline
 input()
 
 
+def isPrime(num):
+    if num == 1:
+        return False
+    elif num == 2:
+        return True
+
+    for i in range(2, num):
+        if i*i > num:
+            return True
+        if i*i <= num and num % i == 0:
+            return False
+
+
 def solution():
     inputs = list(map(int, input().split()))
     answer = 0
     for num in inputs:
-        if num == 1:
-            continue
-        elif num == 2:
+        if isPrime(num):
             answer += 1
-            continue
-
-        for i in range(2, num):
-            if i*i > num:
-                answer += 1
-                break
-
-            if i*i <= num and num % i == 0:
-                break
     print(answer)
 
 
