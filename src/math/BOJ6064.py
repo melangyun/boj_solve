@@ -11,12 +11,16 @@ def solveCal():
     M, N, x, y = map(int, input().split())
     lcm = int(M / math.gcd(M, N) * N)
 
-    yearSet = set()
-    for i in range(0, lcm, M):
-        yearSet.add(i+x)
-    for i in range(0, lcm, N):
-        if i + y in yearSet:
-            return i + y
+    if x == M:
+        x = 0
+    if y == N:
+        y = 0
+
+    for i in range(x, lcm, M):
+        if i == 0:
+            continue
+        if i % N == y:
+            return i
 
     return -1
 
