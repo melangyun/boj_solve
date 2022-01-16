@@ -3,8 +3,7 @@
 
 input()
 numbers = list(map(int, input().split()))
-uniqueList = list(set(numbers))
-uniqueList.sort()
+uniqueList = sorted(set(numbers))
 
 
 def solution():
